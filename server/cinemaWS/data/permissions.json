@@ -1,0 +1,8 @@
+{
+    "users": [
+      { "id": 1, "permissions": ["View Subscriptions","Create Subscriptions","Delete Subscriptions","View Movies","Create Movies","Delete Movies"] },
+      { "id": 2, "permissions": ["View Subscriptions","Create Subscriptions","Delete Subscriptions","View Movies","Create Movies","Delete Movies"] },
+      { "id": 3, "permissions": ["View Subscriptions","Create Subscriptions","Delete Subscriptions","View Movies","Create Movies","Delete Movies"] }
+    ]
+  }
+  
