@@ -1,18 +1,18 @@
 const jf = require('jsonfile');
-const file = './data/users.json';
+const file = './data/user.json';
 
 // read from a JSON file
-const getUser = () => {
+const getuser = () => {
   return jf.readFile(file);
 };
 
 // write to a JSON file
-const setUser = async (obj) => {
+const setuser = async (obj) => {
   await jf.writeFile(file, obj);
   return 'Done!';
 };
 
 module.exports = {
-    getUser,
-    setUser,
+  getuser,
+    setuser,
 };

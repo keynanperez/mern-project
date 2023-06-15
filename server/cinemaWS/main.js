@@ -1,19 +1,22 @@
 const express = require('express');
 const cors = require('cors')
 const connectDB = require('./configs/db')
-
+const userRouter = require('./routers/userRouter');
 const usersRouter = require('./routers/usersRouter');
+
 
 const app = express();
 const port = 8000;
 
-//connectDB()
+connectDB()
 
 app.use(cors())
 app.use(express.json());
 
 // routers
-//app.use('/users', usersRouter);
+app.use('/user',userRouter);
+app.use('/users',usersRouter);
+
 
 app.listen(
   port,
