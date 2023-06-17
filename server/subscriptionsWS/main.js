@@ -2,9 +2,6 @@ const express = require('express');
 const cors = require('cors')
 const connectDB = require('./configs/db')
 const loadData = require('./utils/dataLoading')
-
-
-
 const membersRouter = require('./routers/membersRouter');
 
 
@@ -12,7 +9,6 @@ const  LoadMoviesAndMembers = async () => {
   const { data: members }  = await loadData.getAllMembers();
   const { data: movies } = await loadData.getAllMovies();
 console.log(members)
-
 }
 LoadMoviesAndMembers();
 const app = express();
