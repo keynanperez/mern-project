@@ -1,5 +1,5 @@
-const jf = require('jsonfile');
-const file = './data/user.json';
+const jf = require("jsonfile");
+const file = "./data/user.json";
 
 // read from a JSON file
 const getuser = () => {
@@ -9,10 +9,10 @@ const getuser = () => {
 // write to a JSON file
 const setuser = async (obj) => {
   await jf.writeFile(file, obj);
-  return 'Done!';
+  return "Done!";
 };
 
 module.exports = {
   getuser,
-    setuser,
+  setuser,
 };

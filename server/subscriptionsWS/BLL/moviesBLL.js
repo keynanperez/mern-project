@@ -1,4 +1,4 @@
-const Movie = require('../models/moviesModel');
+const Movie = require("../models/moviesModel");
 
 // GET - Get All - Read
 const getAllMovies = () => {
@@ -14,19 +14,19 @@ const getMovieById = (id) => {
 const addMovie = async (obj) => {
   const us = new Movie(obj);
   await us.save();
-  return 'Created!';
+  return "Created!";
 };
 
 // PUT - Update a Movie - Update
 const updateMovie = async (id, obj) => {
   await Movie.findByIdAndUpdate(id, obj);
-  return 'Updated!';
+  return "Updated!";
 };
 
 // DELETE - Delete a Movie - Delete
 const deleteMovie = async (id) => {
   await Movie.findByIdAndDelete(id);
-  return 'Deleted!';
+  return "Deleted!";
 };
 
 module.exports = {

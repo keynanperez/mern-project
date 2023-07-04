@@ -1,4 +1,4 @@
-const Member = require('../models/membersModel');
+const Member = require("../models/membersModel");
 
 // GET - Get All - Read
 const getAllMembers = () => {
@@ -14,19 +14,19 @@ const getMemberById = (id) => {
 const addMember = async (obj) => {
   const us = new Member(obj);
   await us.save();
-  return 'Created!';
+  return "Created!";
 };
 
 // PUT - Update a Member - Update
 const updateMember = async (id, obj) => {
   await Member.findByIdAndUpdate(id, obj);
-  return 'Updated!';
+  return "Updated!";
 };
 
 // DELETE - Delete a Member - Delete
 const deleteMember = async (id) => {
   await Member.findByIdAndDelete(id);
-  return 'Deleted!';
+  return "Deleted!";
 };
 
 module.exports = {

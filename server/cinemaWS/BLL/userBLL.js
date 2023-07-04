@@ -1,7 +1,7 @@
-const userFile = require('../DAL/userFile');
+const userFile = require("../DAL/userFile");
 
 const getAlluser = async () => {
-  const {user} = await userFile.getuser();
+  const { user } = await userFile.getuser();
   return user;
 };
 

@@ -1,8 +1,7 @@
 {
-    "user": [
-      { "id": 1, "name": "Admin" },
-      { "id": 2, "name": "ben" },
-      { "id": 3, "name": "dina" }
-    ]
-  }
-  
+  "user": [
+    { "id": 1, "name": "Admin" },
+    { "id": 2, "name": "ben" },
+    { "id": 3, "name": "dina" }
+  ]
+}
