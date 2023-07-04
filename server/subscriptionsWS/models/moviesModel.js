@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // 'Schema' maps to a MongoDB collection and defines the shape of the documents within that collection
 // 'Schema' is the blueprint of the documents
@@ -7,19 +7,13 @@ const movieSchema = new mongoose.Schema(
     name: String,
     genres: [String],
     image: String,
-    premiered:Date
-    // car: {
-    //   model: String,
-    //   color: String,
-    //   year: Number
-    // },
-    // cars: [{ model: String, color: String, year: Number }]
+    premiered: Date,
   },
   { versionKey: false }
 );
 
 // A 'model' is a class with which we construct documents in a collection
-const movie = mongoose.model('movie', movieSchema, 'movies');
+const Movie = mongoose.model("movie", movieSchema, "movies");
 // The first argument is the singular name of the collection that will be created for the model (Mongoose will create the database collection for the above model 'movie').
 // The second argument is the schema to use in creating the model.
 // The third argument is the name of the collection.
