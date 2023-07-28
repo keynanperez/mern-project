@@ -1,7 +1,11 @@
 {
   "user": [
-    { "id": 1, "name": "Admin" },
-    { "id": 2, "name": "ben" },
-    { "id": 3, "name": "dina" }
+    {
+      "id": 1,
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "createDate": "2022-10-31T09:00:00.594Z",
+      "sessionTimeout": "1000"
+    }
   ]
 }

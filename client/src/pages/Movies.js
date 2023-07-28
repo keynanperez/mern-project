@@ -1,25 +1,42 @@
 import { Link, useNavigate, useOutletContext, Outlet } from "react-router-dom";
-import { useState, useEffect, button } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import Movie from "../components/Movie";
+
 const Movies = () => {
   const navigate = useNavigate();
 
   const [movies, setMovies] = useState();
-  /*
+
     useEffect(() =>{
+      const getMovies = async () => {
+        const mov = await axios.get("http://localhost:8001/movies");
+        setMovies(mov.data);
+        console.log(movies);
+      };
         getMovies()
-    });   
-*/
-  const getMovies = async () => {
-    const mov = await axios.get("http://localhost:8001/movies");
-    setMovies(mov.data);
-    console.log(movies);
-  };
+    },[]);   
+
+
+  
+
   return (
     <>
-      <button onClick={() => navigate("/Movies")}> Movies</button>
-      <button onClick={() => navigate("/Movies/AddMovie")}> Add Movie</button>
-      <Outlet />
+      <button onClick={() => navigate("/Movies")}> All Movies</button>
+      <button onClick={() => navigate("/AddMovie")}> Add Movie</button>
+      
+        
+          {movies?.map((mov, index) => {
+            return <Movie data={mov} />;
+          })
+          }
+
+
+        
+
+
+     
+
     </>
   );
 };
