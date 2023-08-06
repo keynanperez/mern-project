@@ -4,6 +4,7 @@ const connectDB = require("./configs/db");
 const loadData = require("./utils/dataLoading");
 const membersRouter = require("./routers/membersRouter");
 const moviesRouter = require("./routers/moviesRouter");
+const subscriptionsRouter = require("./routers/subscriptionsRouter");
 
 const LoadMoviesAndMembers = async () => {
   const { data: members } = await loadData.getAllMembers();
@@ -22,6 +23,7 @@ app.use(express.json());
 // routers
 app.use("/members", membersRouter);
 app.use("/movies", moviesRouter);
+app.use("/subscriptions", subscriptionsRouter);
 
 app.listen(port, () =>
   console.log(`app is listening at http://localhost:${port}`)

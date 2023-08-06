@@ -1,24 +1,33 @@
 const permissionFile = require("../DAL/permissionsFile");
 
-const getAllpermission = async () => {
-  const { permission } = await permissionFile.getpermissions();
+const getAllPermission = async () => {
+  const { permission } = await permissionFile.getPermissions();
+
   return permission;
 };
+//GET BY ID
+const getPermission = async (id) => {
+  console.log(id);
 
-const getpermission = async (id) => {
-  const permission = await getAllpermission();
+  const permission = await getAllPermission();
+  console.log(permission);
+  
   return permission.find((permission) => permission.id === +id);
 };
 
-const addpermission = async (obj) => {
-  const permission = await getAllpermission();
-  permission.push(obj);
-  const data = { permission };
-  return permissionFile.setpermission(data);
+
+
+//POST
+const addPermission = async (obj) => {
+  const per = await getAllPermission();
+  per.push(obj);
+  const data = await{ per };
+  console.log(data);
+  return await permissionFile.setPermissions(data);
 };
 
-const updatepermission = async (id, obj) => {
-  const permission = await getAllpermission();
+const updatePermission = async (id, obj) => {
+  const permission = await getAllPermission();
   const index = permission.findIndex((permission) => permission.id === +id);
   if (index !== -1) {
     permission[index] = obj;
@@ -27,8 +36,8 @@ const updatepermission = async (id, obj) => {
   }
 };
 
-const deletepermission = async (id, obj) => {
-  const permission = await getAllpermission();
+const deletePermission = async (id, obj) => {
+  const permission = await getAllPermission();
   const index = permission.findIndex((permission) => permission.id === +id);
   if (index !== -1) {
     permission.splice(index, 1);
@@ -37,4 +46,10 @@ const deletepermission = async (id, obj) => {
   }
 };
 
-module.exports = { getAllpermission, getpermission, addpermission, updatepermission, deletepermission };
+module.exports = {
+  getAllPermission,
+  getPermission,
+  addPermission,
+  updatePermission,
+  deletePermission,
+};

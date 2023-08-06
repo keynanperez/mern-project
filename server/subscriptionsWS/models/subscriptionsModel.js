@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const subscriptionSchema = new mongoose.Schema(
   {
     MemberId: String,
-    movies: [{ movieId: String, date: Date }],
+    movies: [{ movieId: String, date: String }],
   },
   { versionKey: false }
 );
@@ -20,4 +20,4 @@ const subscription = mongoose.model(
 // The second argument is the schema to use in creating the model.
 // The third argument is the name of the collection.
 
-module.exports = Subscription;
+module.exports = subscription;

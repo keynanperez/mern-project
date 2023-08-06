@@ -1,5 +1,5 @@
 {
-  "permission": [
+  "per": [
     {
       "id": 1,
       "permissions": [
@@ -11,7 +11,19 @@
         "Create Movies",
         "Delete Movies",
         "Update Movies"
-
+      ]
+    },
+    {
+      "id": 2,
+      "permissions": [
+        "View Subscriptions",
+        "Create Subscriptions",
+        "Delete Subscriptions",
+        "Update Subscriptions",
+        "View Movies",
+        "Create Movies",
+        "Delete Movies",
+        "Update Movies"
       ]
     }
   ]

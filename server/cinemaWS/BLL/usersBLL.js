@@ -10,6 +10,8 @@ const getUserById = (id) => {
   return User.findById({ _id: id });
 };
 
+
+
 // Post - Create a new User - Create
 const addUser = async (obj) => {
   const us = new User(obj);

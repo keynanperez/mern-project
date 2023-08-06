@@ -17,7 +17,7 @@ router.route("/:id").get(async (req, res) => {
   const user = await userBLL.getuser(id);
   res.json(user);
 });
-
+//POST
 router.route("/").post(async (req, res) => {
   const obj = req.body;
   const result = await userBLL.adduser(obj);

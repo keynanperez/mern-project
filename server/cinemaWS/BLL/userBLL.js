@@ -9,7 +9,7 @@ const getuser = async (id) => {
   const user = await getAlluser();
   return user.find((user) => user.id === +id);
 };
-
+//POST
 const adduser = async (obj) => {
   const user = await getAlluser();
   user.push(obj);

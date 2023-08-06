@@ -22,9 +22,11 @@ router.route("/:id").get(async (req, res) => {
 
 // Add a new subscription
 router.route("/").post(async (req, res) => {
-  const obj = req.body;
-  const result = await subscriptionsBLL.addSubscription(obj);
-  res.status(201).json(result);
+  try {
+    const obj = req.body;
+    const result = await subscriptionsBLL.addSubscription(obj);
+    res.status(201).json(result);
+  } catch (error) {}
 });
 
 // Update a subscription

@@ -19,8 +19,9 @@ const Subscriptions = () => {
 
   return (
     <>
+    <h1> Subscriptions </h1>
       <button onClick={() => navigate("/Subscriptions")}> All Members</button>
-      <button onClick={() => navigate("/Subscriptions/AddMember")}>
+      <button onClick={() => navigate("/AddMember")}>
         {" "}
         Add Member
       </button>

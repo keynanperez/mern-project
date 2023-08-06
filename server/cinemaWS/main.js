@@ -4,6 +4,8 @@ const connectDB = require("./configs/db");
 const userRouter = require("./routers/userRouter");
 const usersRouter = require("./routers/usersRouter");
 const permissionsRouter = require("./routers/permissionsRouter");
+const authRouter = require("./routers/authRouter");
+
 
 
 const app = express();
@@ -18,6 +20,8 @@ app.use(express.json());
 app.use("/user", userRouter);
 app.use("/users", usersRouter);
 app.use("/permissions",permissionsRouter);
+app.use("/auth",authRouter);
+
 //app.use('/members',membersRouter);
 
 app.listen(port, () =>

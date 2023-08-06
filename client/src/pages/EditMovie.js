@@ -20,15 +20,13 @@ const EditMovie = () => {
     const loadmovie = async (id) => {
       const resp = await axios.get("http://localhost:8001/movies/" + params.id);
       setMovie(resp.data);
-      let prem = movie.premiered.split("T")
-      setMovie({ ...movie, premiered: prem[0] })
+      let prem = movie.premiered.split("T");
+      setMovie({ ...movie, premiered: prem[0] });
       console.log(movie);
-
     };
 
     loadmovie(params.id);
   }, []);
-
 
   const updateMovie = async (e) => {
     e.preventDefault();
@@ -38,14 +36,15 @@ const EditMovie = () => {
       image: movie.image,
       premiered: movie.premiered,
     };
-    const resp = await axios.put("http://localhost:8001/movies/"+params.id, obj);
+    const resp = await axios.put(
+      "http://localhost:8001/movies/" + params.id,
+      obj
+    );
     console.log(resp);
   };
-  const cancel = async(e) => {
+  const cancel = async (e) => {
     e.preventDefault();
-    navigate('/Movies/')
-
-
+    navigate("/Movies/");
   };
   return (
     <>
@@ -55,9 +54,7 @@ const EditMovie = () => {
           type="text"
           name="name"
           value={movie?.name}
-          onChange={(name) =>
-            setMovie({ ...movie, name: name.target.value })
-          }
+          onChange={(name) => setMovie({ ...movie, name: name.target.value })}
         />
         <br />
         Genres:{" "}
@@ -85,9 +82,7 @@ const EditMovie = () => {
           type="date"
           name="date"
           value={movie?.premiered}
-          onChange={(x) =>
-            setMovie({ ...movie, premiered: x.target.value })
-          }
+          onChange={(x) => setMovie({ ...movie, premiered: x.target.value })}
         />
         <br />
         <input type="submit" value="Update" />{" "}
