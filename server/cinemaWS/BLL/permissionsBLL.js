@@ -1,55 +1,54 @@
 const permissionFile = require("../DAL/permissionsFile");
 
-const getAllPermission = async () => {
-  const { permission } = await permissionFile.getPermissions();
+
+const getAllpermissions = async () => {
+  const  permission  = await permissionFile.getpermissions();
+  //console.log(permission)
 
   return permission;
 };
-//GET BY ID
-const getPermission = async (id) => {
-  console.log(id);
 
-  const permission = await getAllPermission();
-  console.log(permission);
-  
-  return permission.find((permission) => permission.id === +id);
+const getpermission = async (id) => {
+  const {permissions} = await getAllpermissions();
+ //const permi = permissions.find((per) => per.id === id);
+// console.log(permi)
+
+  return  permissions.find((per) => per.id === id);
+
 };
-
-
-
 //POST
-const addPermission = async (obj) => {
-  const per = await getAllPermission();
-  per.push(obj);
-  const data = await{ per };
-  console.log(data);
-  return await permissionFile.setPermissions(data);
+const addpermission = async (obj) => {
+  const {permissions} = await getAllpermissions();
+  permissions.push(obj);
+  const data = { permissions };
+  return permissionFile.setpermissions(data);
 };
 
-const updatePermission = async (id, obj) => {
-  const permission = await getAllPermission();
-  const index = permission.findIndex((permission) => permission.id === +id);
+const updatepermission = async (id, obj) => {
+  const {permissions} = await getAllpermissions();
+  const index = permissions.findIndex((permission) => permission.id === id);
   if (index !== -1) {
-    permission[index] = obj;
-    const data = { permission };
-    return permissionFile.setpermission(data);
+    permissions[index] = obj;
+    const data = { permissions };
+    return permissionFile.setpermissions(data);
+  }
+};
+const deletepermission = async (id, obj) => {
+  const {permissions} = await getAllpermissions();
+  //console.log(permissions)
+
+  const index =  permissions.findIndex((per) => per.id === id);
+  console.log(index)
+
+  if (index !== -1) {
+    permissions.splice(index, 1);
+    const data = { permissions };
+    //console.log(data)
+
+    return permissionFile.setpermissions(data);
   }
 };
 
-const deletePermission = async (id, obj) => {
-  const permission = await getAllPermission();
-  const index = permission.findIndex((permission) => permission.id === +id);
-  if (index !== -1) {
-    permission.splice(index, 1);
-    const data = { permission };
-    return permissionFile.setpermission(data);
-  }
-};
 
-module.exports = {
-  getAllPermission,
-  getPermission,
-  addPermission,
-  updatePermission,
-  deletePermission,
-};
+
+module.exports = { getAllpermissions, getpermission, addpermission, updatepermission, deletepermission };

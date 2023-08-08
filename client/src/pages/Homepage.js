@@ -11,6 +11,8 @@ import EditMember from "./EditMember";
 import AddUser from "./AddUser";
 import EditUser from "./EditUser";
 import Login from "./Login";
+import Register from "./Register";
+
 import axios from "axios";
 
 const Homepage = () => {
@@ -75,11 +77,12 @@ const Homepage = () => {
         <Route path="EditMember/:id" element={<EditMember />} />
 
         <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
 
-        <Route path="/ManageUsers" element={<ManageUsers />}>
+        <Route path="/ManageUsers" element={<ManageUsers />}/>
           <Route path="AddUser" element={<AddUser />} />
-          <Route path="EditUser" element={<EditUser />} />
-        </Route>
+          <Route path="EditUser/:id" element={<EditUser />} />
+        
       </Routes>
     </div>
   );

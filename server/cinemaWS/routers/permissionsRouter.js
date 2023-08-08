@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.route("/").get(async (req, res) => {
   try {
-    const permission = await permissionBLL.getAllPermission();
+    const permission = await permissionBLL.getAllpermissions();
+    console.log(permission)
     res.json(permission); // 200 - OK
   } catch (error) {
     res.json("There was an error!");
@@ -15,9 +16,9 @@ router.route("/").get(async (req, res) => {
 router.route("/:id").get(async (req, res) => {
   try {
   const { id } = req.params;
-  console.log(id);
+  //console.log(id);
 
-  const permission = await permissionBLL.getPermission(id);
+  const permission = await permissionBLL.getpermission(id);
   console.log(permission);
 
   res.json(permission);
@@ -32,7 +33,7 @@ router.route("/:id").get(async (req, res) => {
 router.route("/").post(async (req, res) => {
   try {
   const obj = req.body;
-  const result = await permissionBLL.addPermission(obj);
+  const result = await permissionBLL.addpermission(obj);
   res.status(201).json(result);
 } catch (error) {
   res.json("There was an error!");
@@ -45,7 +46,7 @@ router.route("/:id").put(async (req, res) => {
   try {
     const { id } = req.params;
     const obj = req.body;
-    const result = await permissionBLL.updatePermission(id, obj);
+    const result = await permissionBLL.updatepermission(id, obj);
     res.json(result);
   } catch (error) {
     res.status(500).json("There was an error!");
@@ -54,7 +55,7 @@ router.route("/:id").put(async (req, res) => {
 
 router.route("/:id").delete(async (req, res) => {
   const { id } = req.params;
-  const result = await permissionBLL.deletePermission(id);
+  const result = await permissionBLL.deletepermission(id);
   res.json(result);
 });
 

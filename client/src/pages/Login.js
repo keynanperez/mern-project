@@ -1,6 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
-import { Routes, Route, Link ,useOutletContext, Outlet,useNavigate} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+
+import {
+  Routes,
+  Route,
+  Link,
+  useOutletContext,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
 const usersUrl = "http://localhost:8000/auth/login";
 
 const Login = () => {
@@ -12,17 +21,17 @@ const Login = () => {
     e.preventDefault();
     if (username) {
       const obj = { username: username, password: password };
-     const resp = await axios.post(usersUrl, obj);
+      const resp = await axios.post(usersUrl, obj);
       console.log(resp.data.accessToken);
-      
-      sessionStorage['accessToken']=resp.data.accessToken
-      sessionStorage['userName']=username
 
-        navigate('/Homepage')
-      
-    } 
-    else alert("Username is mandatory!");
+      sessionStorage["accessToken"] = resp.data.accessToken;
+      sessionStorage["userName"] = username;
+
+      navigate("/Homepage");
+    } else alert("Username is mandatory!");
   };
+
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -32,11 +41,13 @@ const Login = () => {
         Password:{" "}
         <input type="text" onInput={(e) => setPassword(e.target.value)} />{" "}
         <br />
-        <button onClick={handleSubmit} type="submit">
+        <Button variant="light" onClick={handleSubmit} type="submit">
           Send
-        </button>
+        </Button>
       </form>
-      New user? : <Link>Create Account</Link>
+      New user? :       <Link to="/Register">Create Account</Link> {"  "}
+
+      
     </div>
   );
 };

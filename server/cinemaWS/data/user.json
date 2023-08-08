@@ -1,18 +1,1 @@
-{
-  "user": [
-    {
-      "id": 1,
-      "firstName": "Admin",
-      "lastName": "Admin",
-      "createDate": "2022-10-31T09:00:00.594Z",
-      "sessionTimeout": "1000"
-    },
-    {
-      "id": 3,
-      "firstName": "Admin",
-      "lastName": "Admin",
-      "createDate": "2022-10-31T09:00:00.594Z",
-      "sessionTimeout": "1000"
-    }
-  ]
-}
+{"user":[{"id":"64a2c3063cdc1167d6a34591","firstName":"Admin","lastName":"Admin","createDate":"2022-10-31T09:00:00.594Z","sessionTimeout":"2000"},{"id":"64cffdc0499462ab0b83d279","firstName":"jake","lastName":"jake","createDate":"","sessionTimeout":""},{"firstName":"sdwed","lastName":"fdvav","createDate":"2023-08-06","sessionTimeout":"3000"}]}

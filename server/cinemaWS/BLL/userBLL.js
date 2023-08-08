@@ -7,7 +7,7 @@ const getAlluser = async () => {
 
 const getuser = async (id) => {
   const user = await getAlluser();
-  return user.find((user) => user.id === +id);
+  return user.find((user) => user.id === id);
 };
 //POST
 const adduser = async (obj) => {
@@ -19,7 +19,7 @@ const adduser = async (obj) => {
 
 const updateuser = async (id, obj) => {
   const user = await getAlluser();
-  const index = user.findIndex((user) => user.id === +id);
+  const index = user.findIndex((user) => user.id === id);
   if (index !== -1) {
     user[index] = obj;
     const data = { user };
@@ -29,7 +29,7 @@ const updateuser = async (id, obj) => {
 
 const deleteuser = async (id, obj) => {
   const user = await getAlluser();
-  const index = user.findIndex((user) => user.id === +id);
+  const index = user.findIndex((user) => user.id === id);
   if (index !== -1) {
     user.splice(index, 1);
     const data = { user };

@@ -14,7 +14,10 @@ router.route("/").get(async (req, res) => {
 
 router.route("/:id").get(async (req, res) => {
   const { id } = req.params;
+  console.log(id)
   const user = await userBLL.getuser(id);
+  console.log(user)
+
   res.json(user);
 });
 //POST

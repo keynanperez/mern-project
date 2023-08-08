@@ -2,13 +2,15 @@ const jf = require('jsonfile');
 const file = './data/permissions.json';
 
 // read from a JSON file
-const getPermissions = () => {
-  return jf.readFile(file);
+const getpermissions = async() => {
+  //console.log("dcd")
+  //console.log(await jf.readFile(file))
+  return await jf.readFile(file);
 };
 
 
 
-const setPermissions = async (obj) => {
+const setpermissions = async (obj) => {
   console.log(obj)
 
   await jf.writeFile(file, obj);
@@ -16,6 +18,6 @@ const setPermissions = async (obj) => {
 };
 
 module.exports = {
-  getPermissions,
-  setPermissions,
+  getpermissions,
+  setpermissions,
 };

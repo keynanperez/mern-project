@@ -16,7 +16,8 @@ const getUserById = (id) => {
 const addUser = async (obj) => {
   const us = new User(obj);
   await us.save();
-  return 'Created!';
+  console.log(us)
+  return (us._id);
 };
 
 // PUT - Update a User - Update

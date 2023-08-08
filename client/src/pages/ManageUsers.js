@@ -23,7 +23,7 @@ const ManageUsers = () => {
   return (
     <>
       <button onClick={() => navigate("/ManageUsers")}> Users</button>
-      <button onClick={() => navigate("/ManageUsers/AddUser")}>
+      <button onClick={() => navigate("/AddUser")}>
         {" "}
         Add User
       </button>

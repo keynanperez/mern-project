@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const AddUser = () => {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -25,13 +27,19 @@ const AddUser = () => {
       setUsers(us.data);
       let num = users.length;
       setUserId(num+1);
-      console.log(users);
-      console.log(userId);
+      //console.log(users);
+      //console.log(userId);
     };
    //getUsers();
   }, []);
 
-  const cancel = async (e) => {};
+  
+  const cancel = async (e) => {
+
+    e.preventDefault();
+    navigate("/ManageUsers/");
+  };
+
 
   const addUser = async (e) => {
     e.preventDefault();
@@ -60,10 +68,13 @@ const AddUser = () => {
       createDate: withoutTime,
       sessionTimeout: sessionTime,
     };
-    //const respPermissions = await axios.post("http://localhost:8000/permissions/",perObj);
-    //console.log(respPermissions);
-    //const respUser = await axios.post("http://localhost:8000/user/", userObj);
-    //console.log(respUser);
+    const obj = { username: userName, password: userName};
+    const resp = await axios.post("http://localhost:8000/users", obj);
+    console.log(resp.data)
+    const respPermissions = await axios.post("http://localhost:8000/permissions/",perObj);
+    console.log(respPermissions);
+    const respUser = await axios.post("http://localhost:8000/user/", userObj);
+    console.log(respUser);
   };
 
   return (
