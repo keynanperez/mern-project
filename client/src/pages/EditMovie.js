@@ -14,6 +14,7 @@ const EditMovie = () => {
   const navigate = useNavigate();
 
   const [movie, setMovie] = useState();
+  const [editMovies, setEditMovies] = useState();
 
   console.log(params);
   useEffect(() => {
@@ -24,7 +25,24 @@ const EditMovie = () => {
       setMovie({ ...movie, premiered: prem[0] });
       console.log(movie);
     };
+    const getPermissions = async () => {
+      const userId = sessionStorage["userId"];
+      console.log(userId);
+      const per = await axios.get(
+        "http://localhost:8000/permissions/" + userId
+      );
+      // setPermissions(per.data.permissions);
 
+      //return(per.data.permissions)
+      if (per.data.permissions.includes("Update Movies")) {
+        //alert("a")
+        setEditMovies(true);
+      } else {
+        setEditMovies(false);
+        alert("you dont have permission to edit movies");
+      }
+    };
+    getPermissions();
     loadmovie(params.id);
   }, []);
 
@@ -48,46 +66,48 @@ const EditMovie = () => {
   };
   return (
     <>
-      <form onSubmit={(e) => updateMovie(e)}>
-        Name:{" "}
-        <input
-          type="text"
-          name="name"
-          value={movie?.name}
-          onChange={(name) => setMovie({ ...movie, name: name.target.value })}
-        />
-        <br />
-        Genres:{" "}
-        <input
-          type="text"
-          name="name"
-          value={movie?.genres}
-          onChange={(genres) =>
-            setMovie({ ...movie, genres: genres.target.value })
-          }
-        />
-        <br />
-        Image:{" "}
-        <input
-          type="text"
-          name="image"
-          value={movie?.image}
-          onChange={(image) =>
-            setMovie({ ...movie, image: image.target.value })
-          }
-        />
-        <br />
-        Premiered:{" "}
-        <input
-          type="date"
-          name="date"
-          value={movie?.premiered}
-          onChange={(x) => setMovie({ ...movie, premiered: x.target.value })}
-        />
-        <br />
-        <input type="submit" value="Update" />{" "}
-        <input type="button" value="Cancel" onClick={(e) => cancel(e)} />{" "}
-      </form>
+      {editMovies && (
+        <form onSubmit={(e) => updateMovie(e)}>
+          Name:{" "}
+          <input
+            type="text"
+            name="name"
+            value={movie?.name}
+            onChange={(name) => setMovie({ ...movie, name: name.target.value })}
+          />
+          <br />
+          Genres:{" "}
+          <input
+            type="text"
+            name="name"
+            value={movie?.genres}
+            onChange={(genres) =>
+              setMovie({ ...movie, genres: genres.target.value })
+            }
+          />
+          <br />
+          Image:{" "}
+          <input
+            type="text"
+            name="image"
+            value={movie?.image}
+            onChange={(image) =>
+              setMovie({ ...movie, image: image.target.value })
+            }
+          />
+          <br />
+          Premiered:{" "}
+          <input
+            type="date"
+            name="date"
+            value={movie?.premiered}
+            onChange={(x) => setMovie({ ...movie, premiered: x.target.value })}
+          />
+          <br />
+          <input type="submit" value="Update" />{" "}
+          <input type="button" value="Cancel" onClick={(e) => cancel(e)} />{" "}
+        </form>
+      )}
     </>
   );
 };

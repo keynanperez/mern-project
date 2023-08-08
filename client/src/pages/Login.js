@@ -22,10 +22,12 @@ const Login = () => {
     if (username) {
       const obj = { username: username, password: password };
       const resp = await axios.post(usersUrl, obj);
-      console.log(resp.data.accessToken);
+      console.log(resp.data.userId);
 
-      sessionStorage["accessToken"] = resp.data.accessToken;
+      sessionStorage["accessToken"] = resp.data.accessToken.accessToken;
       sessionStorage["userName"] = username;
+      sessionStorage["userId"] = resp.data.userId;
+
 
       navigate("/Homepage");
     } else alert("Username is mandatory!");

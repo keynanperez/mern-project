@@ -14,9 +14,12 @@ const getUserById = (id) => {
 
 // Post - Create a new User - Create
 const addUser = async (obj) => {
+
   const us = new User(obj);
+  //console.log(us)
+
   await us.save();
-  console.log(us)
+  //console.log(us)
   return (us._id);
 };
 

@@ -27,15 +27,23 @@ const Homepage = () => {
     if(resp.data==true)
     
     {
-      //alert(resp.data) 
       return(true)}
     else{
     return(false)
     }
     
   };
-  
+  const isUserAdmin =  () => {
+    const userName =  sessionStorage["userName"];
+    if (userName==="Admin")
+    {
+      return (true)
+
+    }
+else{return (false)}
+  }
   const [userAuth, setUserAuth] = useState(authUser());
+  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
 
   console.log(userAuth)
 
@@ -44,11 +52,16 @@ const Homepage = () => {
   const logOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userName");
+    localStorage.removeItem("userId");
+
 
     navigate('/Login')
   };
   return (
     <div>
+     {
+      userAuth &&  
+      <>
       <h1>Movies - Subscriptions Web Site</h1>
 
       
@@ -59,7 +72,7 @@ const Homepage = () => {
       <Link to="/Movies">Movies</Link> {"  "}
       <Link to="/Subscriptions">Subscriptions</Link> {"  "}
       {
-      userAuth &&
+      userAuth && isAdmin &&
       <>
       <Link to="/ManageUsers">Users Managment</Link> {"  "}
       </>
@@ -84,6 +97,8 @@ const Homepage = () => {
           <Route path="EditUser/:id" element={<EditUser />} />
         
       </Routes>
+      </>
+      }
     </div>
   );
 };

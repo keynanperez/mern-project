@@ -21,7 +21,12 @@ console.log(user)
       ACCESS_SECRET_TOKEN
       // { expiresIn: 7200 } // expires after 7200s (2 hours)
     );
-    res.json({ accessToken });
+    const obj ={
+      accessToken:{ accessToken },
+      userId:user._id
+    }
+    console.log(obj)
+    res.json( obj );
   }
 
   res.status(401); // Unauthorized

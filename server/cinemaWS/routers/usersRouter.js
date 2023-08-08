@@ -24,6 +24,15 @@ router.route("/:id").get(async (req, res) => {
 router.route("/").post(async (req, res) => {
   const obj = req.body;
   console.log(obj);
+  const users = await usersBLL.getAllUsers();
+  users.forEach(element => {
+  if (element.username.includes(obj.username))
+{
+  console.log("obj");
+  res.status(401).json("User Name Is already Exist");
+
+}
+});
   const result = await usersBLL.addUser(obj);
   res.status(201).json(result);
 });

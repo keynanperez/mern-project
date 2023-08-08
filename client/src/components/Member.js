@@ -11,6 +11,7 @@ const Member = (props) => {
   const [myMovies, setMyMovies] = useState();
   const [movies, setMovies] = useState();
   const [moviesArr, setMoviesArr] = useState();
+  const [deleteSubscriptions, setDeleteSubscriptions] = useState();
 
   const todayDate = new Date();
   const [withoutTime] = todayDate.toISOString().split("T");
@@ -30,6 +31,24 @@ const Member = (props) => {
       setSubscriptions(userSub);
       //console.log(subscriptions);
     };
+    const getPermissions = async () => {
+      const userId = sessionStorage["userId"];
+      console.log(userId);
+      const per = await axios.get(
+        "http://localhost:8000/permissions/" + userId
+      );
+      // setPermissions(per.data.permissions);
+
+      //return(per.data.permissions)
+      if (per.data.permissions.includes("Delete Subscriptions")) {
+        //alert("a")
+        setDeleteSubscriptions(true);
+      } else {
+        setDeleteSubscriptions(false);
+        alert("you dont have permission to View Subscriptions");
+      }
+    };
+    getPermissions();
     getMovies();
     getSubscriptions();
 
@@ -68,10 +87,14 @@ const Member = (props) => {
     navigate("/EditMember/" + props.data._id);
   };
   const DeleteMember = async () => {
+    if (deleteSubscriptions) {
     const resp = await axios.delete(
       "http://localhost:8001/subscriptions/" + props.data._id
     );
     alert(resp);
+  } else {
+    alert("you dont have permission to delete member");
+  }
   };
   const SubsribeMovie = () => {
     setIsVisible(!isVisible);

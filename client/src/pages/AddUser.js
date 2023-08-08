@@ -43,7 +43,8 @@ const AddUser = () => {
 
   const addUser = async (e) => {
     e.preventDefault();
-
+    const obj = { username: userName, password: userName};
+    const resp = await axios.post("http://localhost:8000/users", obj);
     let permissions = [];
     if (vSubs) permissions.push("View Subscriptions");
     if (cSubs) permissions.push("Create Subscriptions");
@@ -54,31 +55,63 @@ const AddUser = () => {
     if (dMovies) permissions.push("Delete Movies");
     if (uMovies) permissions.push("Update Movies");
     const perObj = {
-      id: userId,
+      id: resp.data,
       permissions: permissions,
     };
     console.log(perObj);
     const todayDate = new Date();
     const [withoutTime] = todayDate.toISOString().split("T");
-    console.log(withoutTime);
+    //console.log(withoutTime);
     const userObj = {
-      id: userId,
+      id: resp.data,
       firstName: firstName,
       lastName: lastName,
       createDate: withoutTime,
       sessionTimeout: sessionTime,
     };
-    const obj = { username: userName, password: userName};
-    const resp = await axios.post("http://localhost:8000/users", obj);
+    
     console.log(resp.data)
     const respPermissions = await axios.post("http://localhost:8000/permissions/",perObj);
-    console.log(respPermissions);
+    //console.log(respPermissions);
     const respUser = await axios.post("http://localhost:8000/user/", userObj);
     console.log(respUser);
   };
 
+
+  const authUser = async () => {
+    const accessToken = sessionStorage["accessToken"];
+    console.log(accessToken);
+    const obj = { token: accessToken};
+    const resp = await axios.post("http://localhost:8000/auth/verify", obj);
+    console.log(resp.data)
+    if(resp.data==true)
+    
+    {
+      return(true)}
+    else{
+    return(false)
+    }
+    
+  };
+  const isUserAdmin =  () => {
+    const userName =  sessionStorage["userName"];
+    if (userName==="Admin")
+    {
+      return (true)
+
+    }
+else{
+  alert("Only Admin Can Add Users")
+  return (false)}
+  }
+  const [userAuth, setUserAuth] = useState(authUser());
+  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
+
   return (
     <>
+    {
+      userAuth && isAdmin &&
+      <>
       <form onSubmit={(e) => addUser(e)}>
         <br />
         First Name:{" "}
@@ -152,6 +185,8 @@ const AddUser = () => {
         <input type="submit" value="save" />{" "}
         <input type="button" value="Cancel" onClick={(e) => cancel(e)} />{" "}
       </form>
+      </>
+     }
     </>
   );
 };

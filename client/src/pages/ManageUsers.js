@@ -7,7 +7,34 @@ const ManageUsers = () => {
   const navigate = useNavigate();
 
   const [users, setUsers] = useState();
+  const authUser = async () => {
+    const accessToken = sessionStorage["accessToken"];
+    console.log(accessToken);
+    const obj = { token: accessToken};
+    const resp = await axios.post("http://localhost:8000/auth/verify", obj);
+    console.log(resp.data)
+    if(resp.data==true)
+    
+    {
+      return(true)}
+    else{
+    return(false)
+    }
+    
+  };
+  const isUserAdmin =  () => {
+    const userName =  sessionStorage["userName"];
+    if (userName==="Admin")
+    {
+      return (true)
 
+    }
+else{
+  alert("Only Admin Can Manage Users")
+  return (false)}
+  }
+  const [userAuth, setUserAuth] = useState(authUser());
+  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
   useEffect(() => {
 
 
@@ -22,6 +49,9 @@ const ManageUsers = () => {
   }, []);
   return (
     <>
+     {
+      userAuth && isAdmin &&
+      <>
       <button onClick={() => navigate("/ManageUsers")}> Users</button>
       <button onClick={() => navigate("/AddUser")}>
         {" "}
@@ -31,6 +61,9 @@ const ManageUsers = () => {
             return <User data={us} />;
           })
           }
+     
+     </>
+     }
     </>
   );
 };

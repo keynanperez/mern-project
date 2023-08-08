@@ -44,7 +44,34 @@ const EditUser = () => {
     loadUser(params.id);
     loadPermissions(params.id)
   }, []);
+  const authUser = async () => {
+    const accessToken = sessionStorage["accessToken"];
+    console.log(accessToken);
+    const obj = { token: accessToken};
+    const resp = await axios.post("http://localhost:8000/auth/verify", obj);
+    console.log(resp.data)
+    if(resp.data==true)
+    
+    {
+      return(true)}
+    else{
+    return(false)
+    }
+    
+  };
+  const isUserAdmin =  () => {
+    const userName =  sessionStorage["userName"];
+    if (userName==="Admin")
+    {
+      return (true)
 
+    }
+else{
+  alert("Only Admin Can Manage Users")
+  return (false)}
+  }
+  const [userAuth, setUserAuth] = useState(authUser());
+  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
   const updateUser = async (e) => {
     e.preventDefault();
     const resp = await axios.put( "http://localhost:8000/user/" + params.id,user );
@@ -75,6 +102,9 @@ const EditUser = () => {
 
   return (
     <>
+    {
+      userAuth && isAdmin &&
+      <>
       <h1>Edit User : {user?.firstName}</h1>
       <form onSubmit={(e) => updateUser(e)}>
         First Name:{" "}
@@ -179,6 +209,9 @@ const EditUser = () => {
         <input type="submit" value="Update" />{" "}
         <input type="button" value="Cancel" onClick={(e) => cancel(e)} />{" "}
       </form>
+
+      </>
+     }
     </>
   );
 };

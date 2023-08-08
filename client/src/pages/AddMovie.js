@@ -7,6 +7,8 @@ const AddMovie = () => {
   const [geners, setGeners] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [premiered, setPremiered] = useState("");
+  const [addMovies, setAddMovies] = useState();
+
   const navigate = useNavigate();
 
   const saveMovie =async()=>{
@@ -16,12 +18,34 @@ const AddMovie = () => {
             const resp = await axios.post("http://localhost:8001/movies", obj);
             console.log(resp)
   }
- 
+  useEffect(() => {
+  const getPermissions = async () => {
+    const userId = sessionStorage["userId"];
+    console.log(userId);
+    const per = await axios.get(
+      "http://localhost:8000/permissions/" + userId
+    );
+    // setPermissions(per.data.permissions);
+
+    //return(per.data.permissions)
+    if (per.data.permissions.includes("Create Movies")) {
+      //alert("a")
+      setAddMovies(true);
+    } else {
+      setAddMovies(false);
+      alert("you dont have permission to add movies");
+    }
+  };
+  getPermissions();
+}, []);
 
 
   return (
-    <div>
-      <br />
+    <>
+    {
+      addMovies &&
+      <div>
+            <br />
       Name: <input type="text" onChange={(e) => setName(e.target.value)} />{" "}
       <br />
       Genres: <input
@@ -43,6 +67,9 @@ const AddMovie = () => {
       <button onClick={saveMovie}> save</button>
       <button onClick={() => navigate("/Movies")}> cancel</button>
     </div>
+    }
+    </>
+
   );
 };
 export default AddMovie;

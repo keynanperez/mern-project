@@ -12,6 +12,7 @@ import axios from "axios";
 const EditMember = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const [updateSubscriptions, setUpdateSubscriptions] = useState();
 
   const [member, setMember] = useState();
 
@@ -25,7 +26,24 @@ const EditMember = () => {
 
       console.log(member);
     };
+    const getPermissions = async () => {
+      const userId = sessionStorage["userId"];
+      console.log(userId);
+      const per = await axios.get(
+        "http://localhost:8000/permissions/" + userId
+      );
+      // setPermissions(per.data.permissions);
 
+      //return(per.data.permissions)
+      if (per.data.permissions.includes("Update Subscriptions")) {
+        //alert("a")
+        setUpdateSubscriptions(true);
+      } else {
+        setUpdateSubscriptions(false);
+        alert("you dont have permission to View Subscriptions");
+      }
+    };
+    getPermissions();
     loadmember(params.id);
   }, []);
 
@@ -48,6 +66,9 @@ const EditMember = () => {
   };
 
   return (
+    <>
+    {
+      updateSubscriptions &&
     <>
       <h1>Edit Member : {member?.name}</h1>
       <form onSubmit={(e) => updateMovie(e)}>
@@ -80,6 +101,8 @@ const EditMember = () => {
         <input type="submit" value="Update" />{" "}
         <input type="button" value="Cancel" onClick={(e) => cancel(e)} />{" "}
       </form>
+      </>
+    }
     </>
   );
 };
