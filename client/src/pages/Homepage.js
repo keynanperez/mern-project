@@ -50,10 +50,8 @@ else{return (false)}
   
 
   const logOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userId");
-
+    
+    sessionStorage.clear();
 
     navigate('/Login')
   };
@@ -80,23 +78,7 @@ else{return (false)}
 
      
       <br />
-      <Routes>
-        <Route path="/Movies" element={<Movies />} />
-        <Route path="AddMovie" element={<AddMovie />} />
-        <Route path="EditMovie/:id" element={<EditMovie />} />
-
-        <Route path="/Subscriptions" element={<Subscriptions />} />
-        <Route path="AddMember" element={<AddMember />} />
-        <Route path="EditMember/:id" element={<EditMember />} />
-
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-
-        <Route path="/ManageUsers" element={<ManageUsers />}/>
-          <Route path="AddUser" element={<AddUser />} />
-          <Route path="EditUser/:id" element={<EditUser />} />
-        
-      </Routes>
+      
       </>
       }
     </div>
