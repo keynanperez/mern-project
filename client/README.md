@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Full-Stack(MERN) Website - Movie and subscription management system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+Full-Stack(MERN) Website.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Movie and subscription management system.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Client: Developed by React JS with several libraries like (Axios) for making calls to servers,
+(React Router Dom) which I used to route the displayed pages by URL. The site is divided into certain pages and functions that require user permissions, each user has a unique list of permissions that gives him access to pages and functions on the site.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Server: Two servers were developed using Node JS and Express.
+The communication between the server and the client is done by Rest (CRUD).
+The servers manage databases implemented by Mongo DB and object model by Mongoose.
+(The servers read and write files that are also used to store data.)
+The server is also responsible for authenticating the user by JWT that creates a Token key when the user enters the site and then re-authenticates every time a request is sent by the client to enter an area with restricted access.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- The data base has the following initial data:
+- 1 Admin with all the permission.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+The app uses a number of open source projects to work properly:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [ReactJS] - HTML enhanced for web apps!
+- [VScode-Editor] - awesome web-based text editor.
+- [redux] - a predictable state container designed to help you write JavaScript apps that behave consistently across client, server, and native environments.
+- [NodeJS] - HTML enhanced for web apps!
+- [Express] - HTML enhanced for web apps!
+- [MongoDB] - HTML enhanced for web apps!
+- [Mongoose] - HTML enhanced for web apps!
+- [JWT] - HTML enhanced for web apps!
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Installation
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Install the dependencies and devDependencies and start the client.
 
-### `npm run build` fails to minify
+```sh
+cd MERN-PROJECT
+cd client
+npm i
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Install the dependencies and devDependencies and start the first server.
+
+```sh
+cd MERN-PROJECT
+cd server
+cd cinemaWS
+npm i
+npm start
+```
+Install the dependencies and devDependencies and start the secend server.
+
+```sh
+cd MERN-PROJECT
+cd server
+cd subscriptionsWS
+npm i
+npm start
+```
+
+
+
+   [redux]: <https://redux.js.org/>
+   [VScode-Editor]: <https://code.visualstudio.com/>
+   [ReactJS]: <https://react.dev/>
+
+   [NodeJS]: <https://nodejs.org/>
+   [Express]: <https://expressjs.com/>
+   [MongoDB]: <https://www.mongodb.com//>
+   [Mongoose]: <https://mongoosejs.com/>
+   [JWT]: <https://jwt.io//>
+
+
+   
