@@ -36,11 +36,11 @@ The app uses a number of open source projects to work properly:
 - [ReactJS] - HTML enhanced for web apps!
 - [VScode-Editor] - awesome web-based text editor.
 - [redux] - a predictable state container designed to help you write JavaScript apps that behave consistently across client, server, and native environments.
-- [NodeJS] - HTML enhanced for web apps!
-- [Express] - HTML enhanced for web apps!
-- [MongoDB] - HTML enhanced for web apps!
-- [Mongoose] - HTML enhanced for web apps!
-- [JWT] - HTML enhanced for web apps!
+- [NodeJS] - an open source, cross-platform runtime environment for executing JavaScript code. Node is used extensively for server-side programming, making it possible for developers to use JavaScript for client-side and server-side code without.
+- [Express] - a node js web application framework that provides broad features for building web and mobile applications. It is used to build a single page, multipage, and hybrid web application. It's a layer built on the top of the Node js that helps manage servers and routes.
+- [MongoDB] - a document-based NoSQL database that stores data in BSON (JSON-like) format.
+- [Mongoose] -  a Node. js-based Object Data Modeling (ODM) library for MongoDB. It is akin to an Object Relational Mapper (ORM) such as SQLAlchemy for traditional SQL databases. 
+- [JWT] - (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
 
 
 
