@@ -7,6 +7,7 @@ Full-Stack(MERN) Website.
 
 Movie and subscription management system.
 
+<img width="841" alt="Screenshot 2023-08-13 at 18 53 58" src="https://github.com/keynanperez/mern-project/assets/50150611/9341ae64-9774-4581-a3cb-d734f9eaec67">
 
 
 Client: Developed by React JS with several libraries like (Axios) for making calls to servers,
