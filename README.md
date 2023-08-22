@@ -25,9 +25,12 @@ The server is also responsible for authenticating the user by JWT that creates a
 - 1 Admin with all the permission.
 
 
+<img width="1267" alt="Screenshot 2023-08-22 at 19 20 12" src="https://github.com/keynanperez/mern-project/assets/50150611/96de844e-3a26-457b-b295-863fa7f8df52">
+
+<img width="836" alt="Screenshot 2023-08-22 at 19 20 37" src="https://github.com/keynanperez/mern-project/assets/50150611/db6d710f-f129-456d-99f6-5b6f031399b1">
 
 
-
+<img width="582" alt="Screenshot 2023-08-22 at 19 20 53" src="https://github.com/keynanperez/mern-project/assets/50150611/342a1881-4944-4e0c-afdc-9a27452e83fc">
 
 
 
