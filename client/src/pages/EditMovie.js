@@ -1,22 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  Link,
-  useNavigate,
-  useOutletContext,
-  Outlet,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const EditMovie = () => {
   const params = useParams();
   const navigate = useNavigate();
-
   const [movie, setMovie] = useState();
   const [editMovies, setEditMovies] = useState();
 
-  console.log(params);
   useEffect(() => {
     const loadmovie = async (id) => {
       const resp = await axios.get("http://localhost:8001/movies/" + params.id);
@@ -25,17 +17,14 @@ const EditMovie = () => {
       setMovie({ ...movie, premiered: prem[0] });
       console.log(movie);
     };
+
     const getPermissions = async () => {
       const userId = sessionStorage["userId"];
       console.log(userId);
       const per = await axios.get(
         "http://localhost:8000/permissions/" + userId
       );
-      // setPermissions(per.data.permissions);
-
-      //return(per.data.permissions)
       if (per.data.permissions.includes("Update Movies")) {
-        //alert("a")
         setEditMovies(true);
       } else {
         setEditMovies(false);
@@ -60,10 +49,12 @@ const EditMovie = () => {
     );
     console.log(resp);
   };
+
   const cancel = async (e) => {
     e.preventDefault();
     navigate("/Movies/");
   };
+
   return (
     <>
       {editMovies && (

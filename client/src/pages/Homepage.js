@@ -1,86 +1,58 @@
-import { useState, useEffect } from "react";
-import { Container, Box } from "@mui/material";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import Movies from "./Movies";
-import Subscriptions from "./Subscriptions";
-import ManageUsers from "./ManageUsers";
-import AddMovie from "./AddMovie";
-import EditMovie from "./EditMovie";
-import AddMember from "./AddMember";
-import EditMember from "./EditMember";
-import AddUser from "./AddUser";
-import EditUser from "./EditUser";
-import Login from "./Login";
-import Register from "./Register";
-
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Homepage = () => {
   const navigate = useNavigate();
+  const [userAuth, setUserAuth] = useState(authUser());
+  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
 
   const authUser = async () => {
     const accessToken = sessionStorage["accessToken"];
     console.log(accessToken);
-    const obj = { token: accessToken};
+    const obj = { token: accessToken };
     const resp = await axios.post("http://localhost:8000/auth/verify", obj);
-    console.log(resp.data)
-    if(resp.data==true)
-    
-    {
-      return(true)}
-    else{
-    return(false)
+    console.log(resp.data);
+    if (resp.data == true) {
+      return true;
+    } else {
+      return false;
     }
-    
   };
-  const isUserAdmin =  () => {
-    const userName =  sessionStorage["userName"];
-    if (userName==="Admin")
-    {
-      return (true)
 
+  const isUserAdmin = () => {
+    const userName = sessionStorage["userName"];
+    if (userName === "Admin") {
+      return true;
+    } else {
+      return false;
     }
-else{return (false)}
-  }
-  const [userAuth, setUserAuth] = useState(authUser());
-  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
-
-  console.log(userAuth)
-
-  
+  };
 
   const logOut = () => {
-    
     sessionStorage.clear();
-
-    navigate('/Login')
+    navigate("/Login");
   };
+
   return (
     <div>
-     {
-      userAuth &&  
-      <>
-      <h1>Movies - Subscriptions Web Site</h1>
-
-      
-      hello, {sessionStorage["userName"]}{"  "}
-
-      <button onClick={logOut}>log out</button>
-      <br />
-      <Link to="/Movies">Movies</Link> {"  "}
-      <Link to="/Subscriptions">Subscriptions</Link> {"  "}
-      {
-      userAuth && isAdmin &&
-      <>
-      <Link to="/ManageUsers">Users Managment</Link> {"  "}
-      </>
-      }
-
-     
-      <br />
-      
-      </>
-      }
+      {userAuth && (
+        <>
+          <h1>Movies - Subscriptions Web Site</h1>
+          hello, {sessionStorage["userName"]}
+          {"  "}
+          <button onClick={logOut}>log out</button>
+          <br />
+          <Link to="/Movies">Movies</Link> {"  "}
+          <Link to="/Subscriptions">Subscriptions</Link> {"  "}
+          {userAuth && isAdmin && (
+            <>
+              <Link to="/ManageUsers">Users Managment</Link> {"  "}
+            </>
+          )}
+          <br />
+        </>
+      )}
     </div>
   );
 };

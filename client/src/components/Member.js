@@ -5,14 +5,12 @@ import { useState, useEffect } from "react";
 
 const Member = (props) => {
   const navigate = useNavigate();
-  //console.log(props);
   const [subscriptions, setSubscriptions] = useState();
   const [isVisible, setIsVisible] = useState(false);
   const [myMovies, setMyMovies] = useState();
   const [movies, setMovies] = useState();
   const [moviesArr, setMoviesArr] = useState();
   const [deleteSubscriptions, setDeleteSubscriptions] = useState();
-
   const todayDate = new Date();
   const [withoutTime] = todayDate.toISOString().split("T");
 
@@ -20,66 +18,47 @@ const Member = (props) => {
     const getMovies = async () => {
       const mov = await axios.get("http://localhost:8001/movies");
       setMovies(mov.data);
-      //console.log(movies);
     };
 
     const getSubscriptions = async () => {
       const sub = await axios.get("http://localhost:8001/subscriptions");
       let userSub = sub.data.filter((x) => x.MemberId === props.data._id);
-      //console.log(userSub);
-
       setSubscriptions(userSub);
-      //console.log(subscriptions);
     };
+
     const getPermissions = async () => {
       const userId = sessionStorage["userId"];
       console.log(userId);
       const per = await axios.get(
         "http://localhost:8000/permissions/" + userId
       );
-      // setPermissions(per.data.permissions);
-
-      //return(per.data.permissions)
       if (per.data.permissions.includes("Delete Subscriptions")) {
-        //alert("a")
         setDeleteSubscriptions(true);
       } else {
         setDeleteSubscriptions(false);
         alert("you dont have permission to View Subscriptions");
       }
     };
+
     getPermissions();
     getMovies();
     getSubscriptions();
 
     const getMovieName = () => {
-      //console.log(id);
-      console.log(movies);
-      console.log(subscriptions);
-
       if (subscriptions) {
         let moviesArray = [];
         for (let index = 0; index < subscriptions.length; index++) {
           let mov = movies.filter(
             (x) => x._id === subscriptions[index].movies[0].movieId
           );
-          console.log(mov);
           moviesArray.push(mov[0].name);
         }
-        console.log(moviesArray);
         setMoviesArr(moviesArray);
-        // subscriptions.forEach(x => {
-        // let mov =  movies.filter((x) => x._id === id);
-        // });
-        //let mov =  movies.filter((x) => x._id === id);
-        // console.log(mov);
-        //return mov.name;
       }
     };
+    
     getMovieName();
-    const interval = setInterval(() => {
-      //console.log('This will run every second!');
-    }, 1000);
+    const interval = setInterval(() => {}, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -88,13 +67,13 @@ const Member = (props) => {
   };
   const DeleteMember = async () => {
     if (deleteSubscriptions) {
-    const resp = await axios.delete(
-      "http://localhost:8001/subscriptions/" + props.data._id
-    );
-    alert(resp);
-  } else {
-    alert("you dont have permission to delete member");
-  }
+      const resp = await axios.delete(
+        "http://localhost:8001/subscriptions/" + props.data._id
+      );
+      alert(resp);
+    } else {
+      alert("you dont have permission to delete member");
+    }
   };
   const SubsribeMovie = () => {
     setIsVisible(!isVisible);
@@ -106,7 +85,7 @@ const Member = (props) => {
       movies: mov,
     };
     const resp = await axios.post("http://localhost:8001/subscriptions", obj);
-    // console.log(resp);
+    console.log(resp);
   };
 
   return (

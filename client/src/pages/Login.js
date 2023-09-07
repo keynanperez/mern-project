@@ -1,15 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
-
-import {
-  Routes,
-  Route,
-  Link,
-  useOutletContext,
-  Outlet,
-  useNavigate,
-} from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import { Link, useNavigate } from "react-router-dom";
 const usersUrl = "http://localhost:8000/auth/login";
 
 const Login = () => {
@@ -22,18 +14,13 @@ const Login = () => {
     if (username) {
       const obj = { username: username, password: password };
       const resp = await axios.post(usersUrl, obj);
-      console.log(resp.data.userId);
-
       sessionStorage["accessToken"] = resp.data.accessToken.accessToken;
       sessionStorage["userName"] = username;
       sessionStorage["userId"] = resp.data.userId;
-
-
       navigate("/Homepage");
     } else alert("Username is mandatory!");
   };
 
-  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -47,9 +34,7 @@ const Login = () => {
           Send
         </Button>
       </form>
-      New user? :       <Link to="/Register">Create Account</Link> {"  "}
-
-      
+      New user? : <Link to="/Register">Create Account</Link> {"  "}
     </div>
   );
 };

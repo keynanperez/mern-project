@@ -1,35 +1,28 @@
 import React from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const User = (props) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  
-  const EditUser = ()=>{
-    navigate('/EditUser/'+props.data.id
-    )
-  }
-  const DeleteUser = async()=>{
-    
-       
-        const resp = await axios.delete("http://localhost:8000/user/"+props.data.id);
-        alert(resp);
-    
-      };
-    
-  
+  const EditUser = () => {
+    navigate("/EditUser/" + props.data.id);
+  };
+  const DeleteUser = async () => {
+    const resp = await axios.delete(
+      "http://localhost:8000/user/" + props.data.id
+    );
+    alert(resp);
+  };
+
   return (
     <div style={cardStyles.container}>
-
-      name: {props.data.firstName}{" "}{props.data.lastName}
+      name: {props.data.firstName} {props.data.lastName}
       <br />
-     
       <button onClick={EditUser}>Edit</button>
       <button onClick={DeleteUser}>Delete</button>
     </div>
   );
-
 };
 export default User;
 const cardStyles = {

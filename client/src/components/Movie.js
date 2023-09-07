@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 const Movie = (props) => {
   const navigate = useNavigate();
-
   const date = props.data.premiered;
   const [withoutTime] = date.split("T");
   const EditMovie = () => {
@@ -20,11 +19,7 @@ const Movie = (props) => {
       const per = await axios.get(
         "http://localhost:8000/permissions/" + userId
       );
-      // setPermissions(per.data.permissions);
-
-      //return(per.data.permissions)
       if (per.data.permissions.includes("Delete Movies")) {
-        //alert("a")
         setDeleteMovies(true);
       } else {
         setDeleteMovies(false);
@@ -32,6 +27,7 @@ const Movie = (props) => {
     };
     getPermissions();
   }, []);
+
   const DeleteMovie = async () => {
     if (deleteMovies) {
       const resp = await axios.delete(

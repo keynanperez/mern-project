@@ -1,7 +1,7 @@
-import './App.css';
-import { Container,Box } from '@mui/material';
-import Homepage from './pages/Homepage';
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import "./App.css";
+import { Container } from "@mui/material";
+import Homepage from "./pages/Homepage";
+import { Routes, Route } from "react-router-dom";
 import Movies from "./pages/Movies";
 import Subscriptions from "./pages/Subscriptions";
 import ManageUsers from "./pages/ManageUsers";
@@ -14,13 +14,10 @@ import EditUser from "./pages/EditUser";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-
-
-
 function App() {
   return (
     <Container>
-    <Routes>
+      <Routes>
         <Route path="/Movies" element={<Movies />} />
         <Route path="AddMovie" element={<AddMovie />} />
         <Route path="EditMovie/:id" element={<EditMovie />} />
@@ -31,14 +28,12 @@ function App() {
         <Route path="/Homepage" element={<Homepage />} />
         <Route path="/" element={<Login />} />
 
-
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
 
-        <Route path="/ManageUsers" element={<ManageUsers />}/>
-          <Route path="AddUser" element={<AddUser />} />
-          <Route path="EditUser/:id" element={<EditUser />} />
-        
+        <Route path="/ManageUsers" element={<ManageUsers />} />
+        <Route path="AddUser" element={<AddUser />} />
+        <Route path="EditUser/:id" element={<EditUser />} />
       </Routes>
     </Container>
   );
