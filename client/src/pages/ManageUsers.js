@@ -6,9 +6,7 @@ import User from "../components/User";
 const ManageUsers = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState();
-  const [userAuth, setUserAuth] = useState(authUser());
-  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
-
+ 
   const authUser = async () => {
     const accessToken = sessionStorage["accessToken"];
     const obj = { token: accessToken };
@@ -40,6 +38,9 @@ const ManageUsers = () => {
     };
     getUsers();
   }, []);
+
+  const [userAuth, setUserAuth] = useState(authUser());
+  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
   
   return (
     <>

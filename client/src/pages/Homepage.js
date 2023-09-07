@@ -4,8 +4,7 @@ import axios from "axios";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  const [userAuth, setUserAuth] = useState(authUser());
-  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
+ 
 
   const authUser = async () => {
     const accessToken = sessionStorage["accessToken"];
@@ -33,7 +32,8 @@ const Homepage = () => {
     sessionStorage.clear();
     navigate("/Login");
   };
-
+  const [userAuth, setUserAuth] = useState(authUser());
+  const [isAdmin, setIsAdmin] = useState(isUserAdmin());
   return (
     <div>
       {userAuth && (
