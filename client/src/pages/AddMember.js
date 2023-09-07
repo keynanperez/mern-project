@@ -1,5 +1,5 @@
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
-import { useState, useEffect } from "react";
+import {useNavigate } from "react-router-dom";
+import {useState, useEffect } from "react";
 import axios from "axios";
 
 const AddMember = () => {
@@ -9,20 +9,14 @@ const AddMember = () => {
   const [email, setIEmail] = useState("");
   const [city, setCity] = useState("");
 
-
-  useEffect(() =>{
- 
+  useEffect(() => {
     const getPermissions = async () => {
       const userId = sessionStorage["userId"];
       console.log(userId);
       const per = await axios.get(
         "http://localhost:8000/permissions/" + userId
       );
-      // setPermissions(per.data.permissions);
-
-      //return(per.data.permissions)
       if (per.data.permissions.includes("Create Subscriptions")) {
-        //alert("a")
         setCreateSubscriptions(true);
       } else {
         setCreateSubscriptions(false);
@@ -30,7 +24,7 @@ const AddMember = () => {
       }
     };
     getPermissions();
-  },[]);
+  }, []);
   const addMember = async (e) => {
     e.preventDefault();
     const obj = {
@@ -47,34 +41,28 @@ const AddMember = () => {
     navigate("/Subscriptions/");
   };
   return (
-   
     <>
-     {
-      createSubscriptions &&
-    <>
-      <form onSubmit={(e) => addMember(e)}>
-        <br />
-        Name: <input
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-        />{" "}
-        <br />
-        Email: <input
-          type="text"
-          onChange={(e) => setIEmail(e.target.value)}
-        />{" "}
-        <br />
-        City: <input
-          type="text"
-          onChange={(e) => setCity(e.target.value)}
-        />{" "}
-        <br />
-        <br />
-        <input type="submit" value="save" />{" "}
-        <input type="button" value="Cancel" onClick={(e) => cancel(e)} />{" "}
-      </form>
-    </>
-    }
+      {createSubscriptions && (
+        <>
+          <form onSubmit={(e) => addMember(e)}>
+            <br />
+            Name:{" "}
+            <input type="text" onChange={(e) => setName(e.target.value)} />{" "}
+            <br />
+            Email:{" "}
+            <input
+              type="text"
+              onChange={(e) => setIEmail(e.target.value)}
+            />{" "}
+            <br/>
+            City:{" "}
+            <input type="text" onChange={(e) => setCity(e.target.value)} />{" "}
+            <br/>
+            <input type="submit" value="save" />{" "}
+            <input type="button" value="Cancel" onClick={(e) => cancel(e)} />{" "}
+          </form>
+        </>
+      )}
     </>
   );
 };
